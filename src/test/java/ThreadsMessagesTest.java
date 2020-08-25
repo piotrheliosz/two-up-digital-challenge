@@ -29,10 +29,10 @@ public class ThreadsMessagesTest extends TestSetup {
 
         Response threadResponse =
                 given()
-                        .spec(threadsEndpoint.body(threadRequest)).log().all()
+                        .spec(threadsEndpoint.body(threadRequest))
                         .when()
                         .post()
-                        .then().log().all()
+                        .then()
                         .extract()
                         .response();
 
@@ -50,10 +50,10 @@ public class ThreadsMessagesTest extends TestSetup {
 
         Item item =
                 given()
-                        .spec(threadsMessagesEndpoint.body(threadMessageRequest)).log().all()
+                        .spec(threadsMessagesEndpoint.body(threadMessageRequest))
                         .when()
                         .post()
-                        .then().log().all()
+                        .then()
                         .extract().as(Item.class);
 
         itemAssertions(item);
@@ -66,7 +66,7 @@ public class ThreadsMessagesTest extends TestSetup {
 
         Response postResponse =
                 given()
-                        .spec(threadsMessagesEndpoint.body(threadMessageRequest)).log().all()
+                        .spec(threadsMessagesEndpoint.body(threadMessageRequest))
                         .when()
                         .post()
                         .then()
@@ -77,10 +77,10 @@ public class ThreadsMessagesTest extends TestSetup {
 
         GetThreadMessageResponse getThreadMessageResponse =
                 given()
-                        .spec(threadsMessagesEndpoint).log().all()
+                        .spec(threadsMessagesEndpoint)
                         .when()
                         .get()
-                        .then().log().all()
+                        .then()
                         .statusCode(200)
                         .extract().as(GetThreadMessageResponse.class);
 
@@ -111,7 +111,7 @@ public class ThreadsMessagesTest extends TestSetup {
         ThreadMessageRequest threadMessageRequest = setThreadMessageRequest(messageText);
 
         given()
-                .spec(threadsMessagesEndpoint.body(threadMessageRequest)).log().all()
+                .spec(threadsMessagesEndpoint.body(threadMessageRequest))
                 .when()
                 .post()
                 .then()
@@ -124,7 +124,7 @@ public class ThreadsMessagesTest extends TestSetup {
         ThreadMessageRequest threadMessageRequest = setThreadMessageRequest("");
 
         given()
-                .spec(threadsMessagesEndpoint.body(threadMessageRequest)).log().all()
+                .spec(threadsMessagesEndpoint.body(threadMessageRequest))
                 .when()
                 .post()
                 .then()

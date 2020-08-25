@@ -24,10 +24,10 @@ public class SingUpTest extends TestSetup {
 
         PostSingUpResponse singUpResponse =
                 given()
-                        .spec(singUpEndpoint.body(requestBody)).log().all()
+                        .spec(singUpEndpoint.body(requestBody))
                         .when()
                         .post()
-                        .then().log().all()
+                        .then()
                         .statusCode(200)
                         .and()
                         .extract().as(PostSingUpResponse.class);
@@ -54,17 +54,17 @@ public class SingUpTest extends TestSetup {
         SingUpRequest requestBody = setSingUpRequestBodyWithUserName(userName);
 
         given()
-                .spec(singUpEndpoint.body(requestBody)).log().all()
+                .spec(singUpEndpoint.body(requestBody))
                 .when()
                 .post()
-                .then().log().all()
+                .then()
                 .statusCode(200);
 
         given()
-                .spec(singUpEndpoint.body(requestBody)).log().all()
+                .spec(singUpEndpoint.body(requestBody))
                 .when()
                 .post()
-                .then().log().all()
+                .then()
                 .statusCode(409)
                 .body(MESSAGE_JSON_PATH, is("Username already taken"));
 
