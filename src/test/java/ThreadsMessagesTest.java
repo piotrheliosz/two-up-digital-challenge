@@ -17,7 +17,7 @@ import static config.interfaces.request.ThreadRequest.setThreadRequest;
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assume.assumeFalse;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assume.assumeTrue;
 
 public class ThreadsMessagesTest extends TestSetup {
@@ -84,7 +84,7 @@ public class ThreadsMessagesTest extends TestSetup {
                         .statusCode(200)
                         .extract().as(GetThreadMessageResponse.class);
 
-        assumeFalse(getThreadMessageResponse.getItems().isEmpty());
+        assertFalse("GET thread respond with empty array", getThreadMessageResponse.getItems().isEmpty());
 
         Item item = getThreadMessageResponse.getItems().stream()
                 .filter(i -> i.getMessage().equals(messageText))
